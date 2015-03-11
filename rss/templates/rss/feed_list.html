@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block css %}
+{{ block.super }}
+
+<style>
+    input.url {
+    background-color:transparent;
+    border: 0px solid;
+    height:30px;
+    width:260px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <h3>Feeds</h3>
+    <div class="form-horizontal">
+     <form method="POST">
+            {% csrf_token %}
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Active</th>
+                </tr>
+            </thead>
+                <tbody>
+                {% for form in formset %}
+                    <tr>
+                        {% for field in form %}
+                            <td>{{ field }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                {{ formset.management_form }}
+                </tbody>
+            </table>
+            <input type="submit" value="Save" class="btn btn-primary pull-right"/>
+        </form>
+    </div>
+    <a href="{% url 'create_feed' %}"><button class="btn btn-default" type="button">New Feed </button></a>
+
+{% endblock %}

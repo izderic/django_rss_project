@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>New Feed</h3>
+    <div class="form-horizontal">
+        <form method="POST">{% csrf_token %}
+            {% for field in form %}
+                <div class="form-group{% if field.errors %} has-error{% endif %}">
+                    <label class="control-label col-md-2" for="{{ field.auto_id}}">
+                            <b>{% if field.field.required %}*{% endif %} {{ field.label }}</b>
+                    </label>
+                    <div class="col-md-7">
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                </div>
+            {% endfor %}
+        <button class="btn btn-primary col-md-1 col-md-offset-8" type="submit">Save</button>
+        </form>
+    </div>
+{% endblock %}
