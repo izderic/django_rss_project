@@ -8,12 +8,14 @@ from .models import Feed
 
 
 def feed_list(request):
-
+    """
+    Displays the list of feeds and enables feed status change.
+    """
     if request.method == "GET":
         initial = [{'url': feed.url, 'active': feed.active} for feed in Feed.objects.all()]
         return render(request, 'rss/feed_list.html', {
-        'formset': FeedFormSet(initial=initial)
-    })
+            'formset': FeedFormSet(initial=initial)
+        })
     elif request.method == "POST":
         formset = FeedFormSet(request.POST)
         for form in formset.forms:

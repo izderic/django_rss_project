@@ -8,13 +8,14 @@
     background-color:transparent;
     border: 0px solid;
     height:30px;
-    width:260px;
+    width:500px;
 }
 </style>
 {% endblock %}
 
 {% block content %}
     <h3>Feeds</h3>
+    {% if formset.forms %}
     <div class="form-horizontal">
      <form method="POST">
             {% csrf_token %}
@@ -39,6 +40,9 @@
             <input type="submit" value="Save" class="btn btn-primary pull-right"/>
         </form>
     </div>
+    {% else %}
+    No feeds to display.
+    {% endif %}
     <a href="{% url 'create_feed' %}"><button class="btn btn-default" type="button">New Feed </button></a>
 
 {% endblock %}
