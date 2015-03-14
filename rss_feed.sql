@@ -1,0 +1,21 @@
+
+INSERT INTO rss_feed (id, active, url) VALUES (1, 1, 'http://www.feedforall.com/sample.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (2, 1, 'http://www.feedforall.com/sample-feed.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (3, 1, 'http://www.net.hr/rss/feeds/naslovnica/index.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (4, 1, 'http://danas.net.hr/rss/index.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (5, 1, 'http://webcafe.net.hr/rss/index.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (6, 1, 'http://sportski.net.hr/rss/index.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (7, 1, 'http://www.net.hr/rss/feeds/magazin/index.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (8, 1, 'http://www.net.hr/rss/feeds/hot/index.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (9, 1, 'http://www.net.hr/rss/feeds/infocentar/index.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (10, 1, 'http://www.24sata.hr/feeds/aktualno.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (11, 1, 'http://www.24sata.hr/feeds/najnovije.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (12, 1, 'http://www.24sata.hr/feeds/news.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (13, 1, 'http://www.24sata.hr/feeds/show.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (14, 1, 'http://www.24sata.hr/feeds/sport.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (15, 1, 'http://www.24sata.hr/feeds/lifestyle.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (16, 1, 'http://www.24sata.hr/feeds/tech.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (17, 1, 'http://www.24sata.hr/feeds/fun.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (18, 1, 'http://www.24sata.hr/feeds/videotv.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (19, 1, 'http://www.24sata.hr/feeds/reporteri.xml');
+INSERT INTO rss_feed (id, active, url) VALUES (20, 1, 'http://www.24sata.hr/feeds/pametnakuna.xml');
