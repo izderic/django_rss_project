@@ -65,7 +65,7 @@ class Entry(Base):
 
 class Word(Base):
     """
-    The Word class. Number is the overall number of occurences.
+    The Word class. Number is the overall number of occurrences.
     """
     word = models.CharField(max_length=50, unique=True)
     number = models.IntegerField(default=1)
@@ -87,6 +87,10 @@ class Word(Base):
 
         for feed in Feed.objects.active_feeds():
             parsed_feed = feedparser.parse(feed.url)
+
+            if not parsed_feed.entries:
+                continue
+
             feed_words = []
 
             for feed_entry in parsed_feed.entries:
@@ -109,6 +113,9 @@ class Word(Base):
 
     @classmethod
     def create_word_types(cls, data, obj_lookup, words_lookup):
+        """
+        Return the list of the word-feed or word-entry relation objects to save.
+        """
         word_types = []
         for obj_id, words in data.items():
             obj = obj_lookup.get(obj_id)
@@ -124,7 +131,7 @@ class Word(Base):
 class WordType(Base):
     """
     Defines the relation of word and any other model.
-    Number is the number of occurences for specifed object.
+    Number is the number of occurrences for the specifed object.
     """
     word = models.ForeignKey(Word)
     content_type = models.ForeignKey(ContentType)
@@ -141,4 +148,4 @@ class WordType(Base):
         unique_together = (('content_type', 'object_id', 'word'),)
 
     def __unicode__(self):
-        return self.word.word
+        return '%s - %s' % (self.word.word, self.content_object.url)

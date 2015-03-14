@@ -23,9 +23,12 @@ class Command(BaseCommand):
         self.stdout.write('Counting complete.')
 
         self.stdout.write('Saving data...')
+
+        # Save words
         words = [Word.create(word, number) for word, number in word_data.items()]
         Word.objects.bulk_create(words)
 
+        # Save entries
         Entry.objects.bulk_create(entry_url_lookup.values())
 
         # Lookups used to create WordType objects

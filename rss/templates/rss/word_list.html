@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/bootstrap-table.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-select.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'js/bootstrap-table.js' %}"></script>
+    <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+    <script type="text/javascript">
+    $('.selectpicker').selectpicker();
+    var table;
+
+    $(function () {
+
+            var url = '{% url 'get_words' %}';
+            var settings = {
+                method: 'get',
+                url: url,
+                cache: false,
+                striped: true,
+                pagination: true,
+                pageSize: 10,
+                pageList: [10, 25, 50, 100, 200],
+                search: true,
+                showColumns: true,
+                showRefresh: true,
+                minimumCountColumns: 2,
+                clickToSelect: true,
+                sidePagination: 'server',
+                toolbar: '#custom-toolbar',
+                columns: [{
+                    field: 'word',
+                    title: 'Word'
+                }, {
+                    field: 'number',
+                    title: 'Occurences'
+                }]
+            };
+            table = $('#table-javascript').bootstrapTable(settings);
+
+            $( "#feed" ).change(function() {
+                table.bootstrapTable('destroy');
+                table = $('#table-javascript').bootstrapTable(settings);
+                var feedId = $(this).find('option:selected').val();
+                var url = '{% url 'get_words' %}';
+                if (feedId)
+                    url += '?feed_id=' + feedId;
+                table.bootstrapTable('refresh', {url: url});
+            });
+        });
+    </script>
+{% endblock js %}
+
+{% block content %}
+    <br />
+    <div id="custom-toolbar">
+        <label for="feed">Feed URL</label>
+        <select id="feed" class="selectpicker">
+            <option value="">All</option>
+            {% for feed in feeds %}
+                <option value={{ feed.id }}>{{ feed.url }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <table id="table-javascript"></table>
+
+    <a href="{% url 'home' %}">
+        <button class="btn btn-default" type="button">Back</button>
+    </a>
+
+{% endblock %}

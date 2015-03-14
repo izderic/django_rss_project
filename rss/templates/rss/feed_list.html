@@ -17,15 +17,15 @@
     <h3>Feeds</h3>
     {% if formset.forms %}
     <div class="form-horizontal">
-     <form method="POST">
-            {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
             <table class="table">
-            <thead>
-                <tr>
-                    <th>URL</th>
-                    <th>Active</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Active</th>
+                    </tr>
+                </thead>
                 <tbody>
                 {% for form in formset %}
                     <tr>
@@ -43,6 +43,11 @@
     {% else %}
     No feeds to display.
     {% endif %}
-    <a href="{% url 'create_feed' %}"><button class="btn btn-default" type="button">New Feed </button></a>
+    <a href="{% url 'create_feed' %}">
+        <button class="btn btn-default" type="button">New Feed </button>
+    </a>
 
+    <a href="{% url 'home' %}">
+        <button class="btn btn-default" type="button">Back</button>
+    </a>
 {% endblock %}
