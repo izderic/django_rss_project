@@ -42,6 +42,10 @@ class Feed(Base):
     active = models.BooleanField(default=True)
     objects = FeedManager()
 
+    @classmethod
+    def class_string(cls):
+        return 'Feed'
+
     def __unicode__(self):
         return self.url
 
@@ -58,6 +62,10 @@ class Entry(Base):
     def create(cls, url, feed, content):
         entry = cls(url=url, feed=feed, content=content)
         return entry
+
+    @classmethod
+    def class_string(cls):
+        return 'Entry'
 
     def __unicode__(self):
         return self.url

@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.core.exceptions import ObjectDoesNotExist
 from django.core import serializers
 
-from .models import Word, WordType
+from .models import Word, WordType, Feed, Entry
 
 
 class WordResource(View):
@@ -28,9 +28,9 @@ class WordResource(View):
                 except ObjectDoesNotExist:
                     return JsonResponse('Word "%s" does not exist.' % word)
             elif feed_url:
-                return self.num_of_occurrences(word, 'Feed', feed_url)
+                return self.num_of_occurrences(word, Feed, feed_url)
             elif entry_url:
-                return self.num_of_occurrences(word, 'Entry', entry_url)
+                return self.num_of_occurrences(word, Entry, entry_url)
         else:
             return HttpResponse(serializers.serialize('json', self.model.objects.all()))
 
@@ -38,11 +38,12 @@ class WordResource(View):
         """
         Returns the number of occurrences of the word in feed or entry.
         """
+        class_string = model.class_string()
         try:
             obj = model.objects.get(url=url)
-            word_type_obj = WordType.objects.get(content_type__model=model.lower(), word__word=word, object_id=obj.id)
+            word_type_obj = WordType.objects.get(content_type__model=class_string.lower(), word__word=word, object_id=obj.id)
             return JsonResponse(word_type_obj.number, safe=False)
         except model.DoesNotExist:
-            return HttpResponse('%s with URL %s does not exist.' % (model, url))
+            return HttpResponse('%s with URL %s does not exist.' % (class_string, url))
         except WordType.DoesNotExist:
-            return HttpResponse('Word "%s" does not exist in %s %s.' % (word, model.lower(), url))
+            return HttpResponse('Word "%s" does not exist in %s %s.' % (word, class_string.lower(), url))
