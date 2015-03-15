@@ -5,3 +5,12 @@ Aplikacija dohvaća RSS feedove s unesenih adresa, sprema riječi unosa za aktiv
 ### Management command za spremanje riječi i unosa ###
 
     python manage.py save_feed_data
+
+### Home page ###
+
+Na home stranici se nalaze linkovi na stranicu s listom feedova (unos novog feeda, izmjena statusa) te stranicu s listom riječi (filtriranje po feedu, paginacija)
+
+### JSON API ###
+
+Parametri: word, feed_url, entry_url
+Primjer: /word/?word=a&feed_url=http://www.24sata.hr/feeds/sport.xml
