@@ -16,4 +16,4 @@ Parametri: word, feed_url, entry_url
 
 Ako je samo riječ parametar vraća se ukupni broj pojavljivanja riječi. Ako je zadan feed_url ili entry_url vraća se broj pojavljivanja riječi za taj feed ili entry. Ako nema parametara onda se vraćaju sve riječi.
 
-Primjer: /word/?word=a&feed_url=http://www.24sata.hr/feeds/sport.xml
+Primjer: /word/?word=a&feed_url=http://www.feedforall.com/sample.xml
