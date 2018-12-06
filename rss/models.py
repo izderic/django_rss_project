@@ -55,7 +55,7 @@ class Entry(Base):
     The Entry class. URL is unique.
     """
     url = models.URLField(unique=True)
-    feed = models.ForeignKey(Feed)
+    feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     content = models.TextField(max_length=1024)
 
     @classmethod
@@ -141,8 +141,8 @@ class WordType(Base):
     Defines the relation of word and any other model.
     Number is the number of occurrences for the specifed object.
     """
-    word = models.ForeignKey(Word)
-    content_type = models.ForeignKey(ContentType)
+    word = models.ForeignKey(Word, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
     number = models.IntegerField(default=0)

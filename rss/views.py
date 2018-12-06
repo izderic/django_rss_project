@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import HttpResponseRedirect, JsonResponse
 from django.core.paginator import Paginator
 from django.core.management import call_command
@@ -36,7 +36,7 @@ def feed_list(request):
                     feed.active = active
                     feed.save()
 
-        return HttpResponseRedirect(reverse('feed_list'))
+        return HttpResponseRedirect(reverse('rss:feed_list'))
 
 
 def word_list(request):
@@ -102,7 +102,7 @@ class CreateFeedView(CreateView):
         """
         Redirect to the feed_list page after success.
         """
-        return reverse('feed_list')
+        return reverse('rss:feed_list')
 
 
 def save_feed_data(request):

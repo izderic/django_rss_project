@@ -1,13 +1,13 @@
-from django.conf.urls import patterns, include, url
+from django.urls import path, include
 from django.contrib import admin
 
 from rss.api import WordResource
+from rss.views import home
 
 
-urlpatterns = patterns(
-    '',
-    url(r'^$', 'rss.views.home', name='home'),
-    url(r'^rss/', include('rss.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^word/', WordResource.as_view()),
-)
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', home, name='home'),
+    path('rss/', include('rss.urls', namespace='rss')),
+    path('word/', WordResource.as_view()),
+]

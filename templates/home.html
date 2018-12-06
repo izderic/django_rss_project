@@ -2,11 +2,11 @@
 
 {% block content %}
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="{% url 'feed_list' %}" >Feed List</a></li>
-      <li><a href="{% url 'word_list' %}" >Word List</a></li>
+      <li><a href="{% url 'rss:feed_list' %}" >Feed List</a></li>
+      <li><a href="{% url 'rss:word_list' %}" >Word List</a></li>
     </ul>
 
-    <a href="{% url 'save_feed_data' %}">
+    <a href="{% url 'rss:save_feed_data' %}">
         <button class="btn btn-default" type="button" title="Gets the data for active feeds by url, saves the feed entries to the database">Save Feed Data</button>
     </a>
 

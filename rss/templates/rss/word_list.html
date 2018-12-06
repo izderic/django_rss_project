@@ -17,7 +17,7 @@
 
     $(function () {
 
-            var url = '{% url 'get_words' %}';
+            var url = '{% url 'rss:get_words' %}';
             var settings = {
                 method: 'get',
                 url: url,
@@ -47,7 +47,7 @@
                 table.bootstrapTable('destroy');
                 table = $('#table-javascript').bootstrapTable(settings);
                 var feedId = $(this).find('option:selected').val();
-                var url = '{% url 'get_words' %}';
+                var url = '{% url 'rss:get_words' %}';
                 if (feedId)
                     url += '?feed_id=' + feedId;
                 table.bootstrapTable('refresh', {url: url});
