@@ -30,4 +30,4 @@ This app fetches RSS feed data from configured addresses. Each word is stored in
 Management command for saving to database
 -----------------------------------------
 
-    ``python manage.py save_feed_data`
+    ``python manage.py save_feed_data``
