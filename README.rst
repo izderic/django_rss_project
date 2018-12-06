@@ -18,6 +18,8 @@ Setup instructions
 
 6. Run the server ``python manage.py runserver``
 
+7. Navigate to ``http://127.0.0.1:8000/``
+
 
 About
 -----
@@ -28,4 +30,4 @@ This app fetches RSS feed data from configured addresses. Each word is stored in
 Management command for saving to database
 -----------------------------------------
 
-    ``python manage.py save_feed_data``
+    ``python manage.py save_feed_data`
