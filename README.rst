@@ -12,11 +12,11 @@ Setup instructions
 
 3. Move to project directory ``cd django_rss_project``
 
-3. Install the requirements ``pip install -r requirements.txt``
+4. Install the requirements ``pip install -r requirements.txt``
 
-4. Create the database with ``python manage.py migrate``
+5. Create the database with ``python manage.py migrate``
 
-5. Run the server ``python manage.py runserver``
+6. Run the server ``python manage.py runserver``
 
 
 About
