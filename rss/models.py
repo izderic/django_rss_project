@@ -1,11 +1,15 @@
 import re
 import feedparser
+import ssl
 from collections import Counter
 
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.utils.html import strip_tags
+
+if hasattr(ssl, '_create_unverified_context'):
+    ssl._create_default_https_context = ssl._create_unverified_context
 
 
 class Base(models.Model):
@@ -46,7 +50,7 @@ class Feed(Base):
     def class_string(cls):
         return 'Feed'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.url
 
 
@@ -67,7 +71,7 @@ class Entry(Base):
     def class_string(cls):
         return 'Entry'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.url
 
 
@@ -132,7 +136,7 @@ class Word(Base):
                 word_types.append(word_type)
         return word_types
 
-    def __unicode__(self):
+    def __str__(self):
         return self.word
 
 
@@ -155,5 +159,5 @@ class WordType(Base):
     class Meta:
         unique_together = (('content_type', 'object_id', 'word'),)
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s - %s' % (self.word.word, self.content_object.url)
